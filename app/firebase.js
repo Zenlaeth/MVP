@@ -8,12 +8,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBP2Sgf5SCVebwBYtGIzdT0EQ9cqyG6jDs",
-  authDomain: "testapp-38274.firebaseapp.com",
-  projectId: "testapp-38274",
-  storageBucket: "testapp-38274.appspot.com",
-  messagingSenderId: "737264486139",
-  appId: "1:737264486139:web:d13e7a95f0ab01e29d925e"
+    apiKey: "AIzaSyBOm72m_SBevaRW8M6Z3wv4xK044L8oBW4",
+    authDomain: "testapp-642a6.firebaseapp.com",
+    projectId: "testapp-642a6",
+    storageBucket: "testapp-642a6.appspot.com",
+    messagingSenderId: "617107167073",
+    appId: "1:617107167073:web:45e43fa640ecded9fe1720"
 };
 
 // Initialize Firebase
@@ -22,4 +22,4 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
 
-export const storage = getStorage(app, "gs://testapp-38274.appspot.com");
+export const storage = getStorage(app, "gs://testapp-642a6.appspot.com");

@@ -2,6 +2,7 @@
 
 import { getAllPosts, createNewPost } from "@/actions/post"
 import { getUserById, getAllUsers } from "@/actions/user"
+import { revalidatePath } from 'next/cache'
 
 const AddPostForm = async () => {
 
