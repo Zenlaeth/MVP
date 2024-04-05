@@ -10,18 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model Zone {
+  id        Int     @id @default(autoincrement())
+  name      String
+  packages Package[]
 }
 
-model Post {
+model Package {
   id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  departureAddress   String
+  deliveryAddress   String
+  weight  Int
+  zone    Zone    @relation(fields: [zoneId], references: [id])
+  zoneId  Int
 }
