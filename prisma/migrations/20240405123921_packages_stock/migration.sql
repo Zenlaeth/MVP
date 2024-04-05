@@ -1,7 +1,8 @@
 -- CreateTable
 CREATE TABLE "Zone" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "name" TEXT NOT NULL,
+    "stockLimit" INTEGER NOT NULL
 );
 
 -- CreateTable

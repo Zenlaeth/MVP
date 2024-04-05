@@ -1,7 +1,7 @@
 "use server"
 
 import { getPackages, createPackage } from "@/actions/package"
-import { getZones } from "@/actions/zone"
+import { getZone, getZones } from "@/actions/zone"
 import { revalidatePath } from 'next/cache'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -11,32 +11,38 @@ const AddPackageForm = async () => {
 
     const submit = async (data) => {
         "use server"
+        const zoneId = Number(data.get('zoneId'))
+        const zone = await getZone(zoneId)
 
-        const newPack = await createPackage({
-            departureAddress: data.get('departureAddress'),
-            deliveryAddress: data.get('deliveryAddress'),
-            weight: Number(data.get('weight')),
-            zoneId: Number(data.get('zoneId'))
-        })
+        if (zone.stockLimit == zone.packages.length) {
+            console.log("Espace indiponible dans " + zone.name)
+        } else {
+            const newPack = await createPackage({
+                departureAddress: data.get('departureAddress'),
+                deliveryAddress: data.get('deliveryAddress'),
+                weight: Number(data.get('weight')),
+                zoneId: zoneId
+            })
 
-        redirect('/managment')
+            redirect('/managment')
+        }
     }
 
     return (
-        <form class="p-10 bg-white" action={submit}>
-            <div class="">
-                <label class="block text-sm text-gray-600" for="departureAddress">Addresse de départ</label>
-                <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="departureAddress" name="departureAddress" type="text" required=""/>
+        <form className="p-10 bg-white" action={submit}>
+            <div className="">
+                <label className="block text-sm text-gray-600" htmlFor="departureAddress">Addresse de départ</label>
+                <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="departureAddress" name="departureAddress" type="text" required=""/>
             </div>
-            <div class="mt-2">
-                <label class="block text-sm text-gray-600" for="deliveryAddress">Adresse de livraison</label>
-                <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="deliveryAddress" name="deliveryAddress" type="text" required=""/>
+            <div className="mt-2">
+                <label className="block text-sm text-gray-600" htmlFor="deliveryAddress">Adresse de livraison</label>
+                <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="deliveryAddress" name="deliveryAddress" type="text" required=""/>
             </div>
-            <div class="mt-2">
-                <label class="block text-sm text-gray-600" for="weight">Poids</label>
-                <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="weight" name="weight" type="number" required=""/>
+            <div className="mt-2">
+                <label className="block text-sm text-gray-600" htmlFor="weight">Poids</label>
+                <input className="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="weight" name="weight" type="number" required=""/>
             </div>
-            <div class="mt-2">
+            <div className="mt-2">
                 <select name="zoneId" >
                     {
                         zones ? (
@@ -49,8 +55,8 @@ const AddPackageForm = async () => {
                     }
                 </select>
             </div>
-            <div class="mt-6">
-                <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Submit</button>
+            <div className="mt-6">
+                <button className="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit">Submit</button>
             </div>
         </form>
     )

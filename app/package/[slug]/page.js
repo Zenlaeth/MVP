@@ -15,8 +15,8 @@ const Page = async ({ params }) => {
     return (
         <div>
             <Navbar />
-            <div class="container my-24 mx-auto md:px-6">
-                    <h1 class="mb-6 text-3xl font-bold">
+            <div className="container my-24 mx-auto md:px-6">
+                    <h1 className="mb-6 text-3xl font-bold">
                         Colis n°{pack.id}
                     </h1>
                     <p>Addresse de départ : {pack.departureAddress}</p>

@@ -13,6 +13,7 @@ datasource db {
 model Zone {
   id        Int     @id @default(autoincrement())
   name      String
+  stockLimit  Int 
   packages Package[]
 }
 
