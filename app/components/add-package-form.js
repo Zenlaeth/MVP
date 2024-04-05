@@ -44,7 +44,7 @@ const AddPackageForm = async () => {
                                 <option key={zone.id} value={zone.id}>{zone.name}</option>
                             ))
                         ) : (
-                            <option value="">Aucun utilisateur</option>
+                            <option value="">Aucune zone</option>
                         )
                     }
                 </select>
